@@ -44,15 +44,17 @@ if (article) {
 
         (date ?? heading).insertAdjacentElement("afterend", badge);
 
-
         
+        //image
+        const img = document.createElement("img");
+        img.src = chrome.runtime.getURL('images/alert.gif');
+        img.style = 'position:fixed; top: 0; right: 0;';
+
+        article.insertAdjacentElement("afterend",img);
+
     } else
     {
         messageTitle = 'Sin disponibilidad de boletos';
-        
-        // This will make the window blink/draw attention in the taskbar or equivalent
-        //chrome.windows.update(-2, {drawAttention: true});
-        
     }
 
     setTimeout(()=>{
@@ -62,7 +64,7 @@ if (article) {
             console.log(response.message);
           });
 
-        if(messageTitle.startsWith('🚨') || true) {
+        if(messageTitle.startsWith('🚨')) {
             setInterval(step, 50);
         }
 
